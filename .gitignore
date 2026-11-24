@@ -1,0 +1,18 @@
+# Ignore original course reference materials (contain school/instructor info)
+/01-*.png
+/02-*.png
+/*.pdf
+/*.docx
+/*.doc
+/*.xlsx
+/*.xls
+
+# OS / Editor / Temp / Secrets
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.tmp
+*.log
+.env
+.env.*
