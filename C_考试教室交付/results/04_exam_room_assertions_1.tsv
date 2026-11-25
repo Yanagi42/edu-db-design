@@ -1,0 +1,90 @@
+1	EX01-合法排考写入	PASS	actual=1, expected=1
+2	EX01-回滚无残留	PASS	actual=0, expected=0
+3	EX02-考试占用教室且节次端点重叠	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+4	EX02-正常课程占用教室	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+5	EX02-已通过借用占用教室	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+6	EX02-监考与已有监考冲突	PASS	errno=1644, SQLSTATE=45000, ER_TEACHER_BUSY: 监考教师与已有监考或授课冲突
+7	EX02-监考与本人授课冲突	PASS	errno=1644, SQLSTATE=45000, ER_TEACHER_BUSY: 监考教师与已有监考或授课冲突
+8	EX02-跨班选修学生考试冲突	PASS	errno=1644, SQLSTATE=45000, ER_STUDENT_BUSY: 选课学生与已有考试或课程冲突
+9	EX02-选课学生与课程冲突	PASS	errno=1644, SQLSTATE=45000, ER_STUDENT_BUSY: 选课学生与已有考试或课程冲突
+10	EX02-物理教室容量不足	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_CAPACITY: 教室容量不足
+11	EX02-实际选课人数大于考位	PASS	errno=1644, SQLSTATE=45000, ER_EXAM_SEATS: 考位小于实际有效选课人数
+12	EX02-维修教室	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_UNAVAILABLE: 教室不存在或不可用
+13	EX02-多媒体要求	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_MULTIMEDIA: 教室不支持多媒体
+14	EX02-超出学期总周数	PASS	errno=1644, SQLSTATE=45000, ER_SLOT: 周次、星期或节次不合法/超出学期
+15	EX02-星期越界	PASS	errno=1644, SQLSTATE=45000, ER_SLOT: 周次、星期或节次不合法/超出学期
+16	EX02-节次倒置	PASS	errno=1644, SQLSTATE=45000, ER_SLOT: 周次、星期或节次不合法/超出学期
+17	EX02-教学班与学期不一致	PASS	errno=1644, SQLSTATE=45000, ER_OFFERING_TERM: 教学班不存在、已停开或学期不一致
+18	EX02-监考教师不存在	PASS	errno=1644, SQLSTATE=45000, ER_INVIGILATOR: 监考教师不存在或不在职
+19	EX02-重复安排同一教学班	PASS	errno=1062, SQLSTATE=23000, Duplicate entry 'O007' for key 'exam.uk_er_exam_offering'
+20	EX02-改排同样接受冲突校验	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+21	EX02-非法改排保留原安排	PASS	actual=1, expected=1
+22	EX02-全部非法排考无残留	PASS	actual=0, expected=0
+23	EX03-S011个人考表四场	PASS	actual=4, expected=4
+24	EX03-已通过缓考显示并无座位	PASS	actual=1, expected=1
+25	EX03-待审缓考仍须应考	PASS	actual=1, expected=1
+26	EX03-已退课不出现在考表	PASS	actual=0, expected=0
+27	EX04-合讲教师可查本班考试	PASS	actual=1, expected=1
+28	EX04-非任课监考教师可查	PASS	actual=1, expected=1
+29	EX04-不同教师角色均被覆盖	PASS	actual=2, expected=2
+30	EX04-每位教师每场无重复	PASS	actual=0, expected=0
+31	EX04-任课兼监考仍仅一行	PASS	actual=1, expected=1
+32	EX05-本班完整名单十人	PASS	actual=10, expected=10
+33	EX05-应考九人缓考一人	PASS	actual=9, expected=9
+34	EX05-应考座位连续到九	PASS	actual=9, expected=9
+35	EX05-驳回缓考仍应考有座位	PASS	actual=1, expected=1
+36	EX05-不暴露家庭电话等隐私列	PASS	actual=0, expected=0
+37	EX06-合法申请从待审开始	PASS	actual=1, expected=1
+38	EX06-审批同步改变考试名单	PASS	actual=1, expected=1
+39	EX06-重复申请拦截	PASS	errno=1062, SQLSTATE=23000, Duplicate entry 'ERX002-65' for key 'exam_deferral.uk_er_deferral_exam_enrollment'
+40	EX06-重复审批拦截	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_STATE: 禁止重复审批或状态回退
+41	EX06-非本场选课拦截	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_ENROLLMENT: 必须是本场考试有效选课学生
+42	EX06-已退课申请拦截	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_ENROLLMENT: 必须是本场考试有效选课学生
+43	EX06-初始状态不可直接已通过	PASS	errno=1644, SQLSTATE=45000, ER_INITIAL_STATUS: 缓考申请必须从待审核开始
+44	EX06-申请原因不能为空	PASS	errno=3819, SQLSTATE=HY000, Check constraint 'ck_er_deferral_reason' is violated.
+45	EX06-审批人必填	PASS	errno=3819, SQLSTATE=HY000, Check constraint 'ck_er_deferral_review' is violated.
+46	EX06-终态不可退回待审	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_STATE: 禁止重复审批或状态回退
+47	EX06-审批历史不可删除	PASS	errno=1644, SQLSTATE=45000, ER_HISTORY: 缓考审批记录不可删除
+48	EX06-测试结束恢复缓考记录数	PASS	actual=3, expected=3
+49	ROOM01-待审不占用	PASS	actual=0, expected=0
+50	ROOM01-通过后占用	PASS	actual=1, expected=1
+51	ROOM01-审批时二次冲突检查	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+52	ROOM01-失败审批保留待审	PASS	actual=1, expected=1
+53	ROOM01-取消后释放占用	PASS	actual=0, expected=0
+54	ROOM01-取消保留审批与取消留痕	PASS	actual=1, expected=1
+55	ROOM01-释放后另一申请可通过	PASS	actual=1, expected=1
+56	ROOM01-已通过不可重复审批	PASS	errno=1644, SQLSTATE=45000, ER_BOOKING_STATE: 禁止重复审批或非法状态回退
+57	ROOM01-取消不可覆盖审批历史	PASS	errno=1644, SQLSTATE=45000, ER_REVIEW_IMMUTABLE: 取消不得覆盖原审批记录
+58	ROOM01-审批后不可暗改时间	PASS	errno=1644, SQLSTATE=45000, ER_BOOKING_IMMUTABLE: 申请内容不可覆盖，请取消后重新申请
+59	ROOM01-借用历史不可删除	PASS	errno=1644, SQLSTATE=45000, ER_HISTORY: 借用记录须保留，请使用取消流程
+60	ROOM01-双申请人拦截	PASS	errno=1644, SQLSTATE=45000, ER_APPLICANT: 必须且只能指定学生或教师申请人
+61	ROOM01-无申请人拦截	PASS	errno=1644, SQLSTATE=45000, ER_APPLICANT: 必须且只能指定学生或教师申请人
+62	ROOM01-不可借用学籍状态	PASS	errno=1644, SQLSTATE=45000, ER_APPLICANT: 学生不存在或学籍状态不可申请
+63	ROOM01-借用人数超容量	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_CAPACITY: 教室容量不足
+64	ROOM01-借用设备不满足	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_MULTIMEDIA: 教室不支持多媒体
+65	ROOM01-借用单双周空集合	PASS	errno=1644, SQLSTATE=45000, ER_SLOT_EMPTY: 单双周配置没有实际发生周
+66	ROOM01-正式审批接口拒绝课程占用	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+67	ROOM01-正式审批接口拒绝已占用借用	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+68	ROOM01-正式接口拒绝无效决定	PASS	errno=1644, SQLSTATE=45000, ER_DECISION: 审批决定只能为已通过或已驳回
+69	ROOM01-正式接口拒绝空决定	PASS	errno=1644, SQLSTATE=45000, ER_DECISION: 审批决定只能为已通过或已驳回
+70	ROOM01-正式接口拒绝未知申请	PASS	errno=1644, SQLSTATE=45000, ER_NOT_FOUND: 借用申请不存在
+71	EX06-正式缓考接口拒绝重复审批	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_STATE: 禁止重复审批或状态回退
+72	EX06-正式申请接口拒绝未选课	PASS	errno=1644, SQLSTATE=45000, ER_DEFERRAL_ENROLLMENT: 必须是本场考试有效选课学生
+73	EX02-正式排考接口回滚冲突	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+74	EX02-正式改排接口回滚冲突	PASS	errno=1644, SQLSTATE=45000, ER_ROOM_BUSY: 教室与课程、考试或已通过借用冲突
+75	ROOM02-课程考试借用均进入占用口径	PASS	actual=3, expected=3
+76	ROOM02-待审驳回取消不占用	PASS	actual=0, expected=0
+77	ROOM02-单双周互斥	PASS	actual=0, expected=0
+78	ROOM02-交集仅偶周不与单周冲突	PASS	actual=0, expected=0
+79	ROOM02-交集仅奇周不与双周冲突	PASS	actual=0, expected=0
+80	ROOM02-相邻不重叠节次	PASS	actual=0, expected=0
+81	ROOM02-节次端点重叠	PASS	actual=1, expected=1
+82	ROOM02-查询范围不能超学期	PASS	errno=1644, SQLSTATE=45000, ER_SLOT: 周次、星期或节次不合法/超出学期
+83	ROOM02-查询参数不能为NULL	PASS	errno=1644, SQLSTATE=45000, ER_RESOURCE: 人数或多媒体参数不合法
+84	TX-第一步确实进入事务	PASS	actual=1, expected=1
+85	TX-第二步准确命中业务冲突	PASS	actual=1, expected=1
+86	TX-第一步与第二步均无残留	PASS	actual=0, expected=0
+87	END-考试行数恢复	PASS	actual=8, expected=8
+88	END-借用行数恢复	PASS	actual=6, expected=6
+89	END-缓考行数恢复	PASS	actual=3, expected=3
+90	END-有效种子申请状态未改变	PASS	actual=2, expected=2
