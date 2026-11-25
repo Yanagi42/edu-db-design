@@ -1,0 +1,4 @@
+2026-11-25T04:33:42.569941Z 0 [System] [MY-013169] [Server] /tmp/edu-mysql8/bin/mysqld (mysqld 8.0.44) initializing of server in progress as process 8
+2026-11-25T04:33:42.577535Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-11-25T04:33:42.886778Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-11-25T04:33:44.171300Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.

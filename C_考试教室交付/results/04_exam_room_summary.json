@@ -1,0 +1,21 @@
+{
+  "mysql": [
+    "8.0.44",
+    "MySQL Community Server - GPL",
+    "InnoDB",
+    "8",
+    "6",
+    "3"
+  ],
+  "assertions_per_run": [
+    90,
+    90
+  ],
+  "all_passed": true,
+  "repeat_ddl_seed_and_tests": true,
+  "shared_table_row_counts_preserved": true,
+  "execution_mode": "MySQL initialize-insecure + init-file; no listener",
+  "temporary_definer": "root@localhost (initialization thread only)",
+  "concurrency_tested": false,
+  "normal_client_import_tested": false
+}
